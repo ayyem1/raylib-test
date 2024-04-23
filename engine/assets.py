@@ -25,7 +25,7 @@ class AssetDatabase:
         return cls._instance
 
     def add_animation_asset(
-        self, key: str, path: str, num_frames: int, img_frame_duration: float = 5, loop: bool = True
+        self, key: str, path: str, num_frames: int, img_frame_duration: float = 5.0 / 60.0, loop: bool = True
     ):
         if key in self._assets:
             print(f"Key already exists in asset database. key={key}")

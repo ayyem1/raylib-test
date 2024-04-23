@@ -11,7 +11,6 @@ class Player:
 
     def __init__(self, pos: pyray.Vector2) -> None:
         self.action: str = ""
-        # TODO: We should have an idle state
         self.set_action(self.MOVE_DOWN)
 
         self.position = pos
@@ -22,12 +21,14 @@ class Player:
     def set_action(self, action: str):
         if action != self.action:
             self.action = action
-            self.animation = AssetDatabase().get_asset(action).copy()
+            # Do we need to copy here?
+            self.animation = AssetDatabase().get_asset(action)
 
     def update(self, dt: float):
         self.handle_input()
         self.handle_movement(dt=dt)
-        self.animation.update()
+        # TODO: Set up idle state
+        self.animation.update(dt=dt)
 
     def handle_input(self):
         # We convert the boolean sotred in keys to an int (0 or 1) to
